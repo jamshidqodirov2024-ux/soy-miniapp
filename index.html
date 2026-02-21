@@ -721,13 +721,17 @@
 
     // ===== Chat preview =====
     const toast = $("toast");
-    $("btn-send").onclick = ()=>{
-      const v = ($("chatMsg").value || "").trim();
-      if(!v) return;
-      $("chatMsg").value = "";
-      toast.classList.add("show");
-      setTimeout(()=>toast.classList.remove("show"), 1600);
-    };
+ $("btn-send").onclick = ()=>{
+  const v = ($("chatMsg").value || "").trim();
+  if(!v) return;
+
+  const text = encodeURIComponent("SOY AVTOMAKTABI savol: " + v);
+  window.open(`https://t.me/uzactive?text=${text}`, "_blank");
+
+  $("chatMsg").value = "";
+  toast.classList.add("show");
+  setTimeout(()=>toast.classList.remove("show"), 1600);
+};
     $("btn-call2").onclick = ()=>{ window.location.href = "tel:+998889884840"; };
     $("btn-telegram").onclick = ()=>{ window.open("https://t.me/uzactive", "_blank"); };
 
@@ -922,3 +926,4 @@
   </script>
 </body>
 </html>
+
