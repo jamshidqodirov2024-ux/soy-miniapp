@@ -12,12 +12,14 @@
   <div class="shell">
     <header class="topbar sweep">
       <div class="logo">
-  <img src="logo.png" alt="SOY logo">
-</div>
+        <img src="logo.png" alt="SOY logo" />
+      </div>
+
       <div class="head">
         <b>SOY AVTOMAKTABI</b>
         <span>Asosiy ma’lumot • Test • Video dars • Chat</span>
       </div>
+
       <div class="pill"><span class="dot"></span> LIVE</div>
     </header>
 
@@ -49,7 +51,7 @@
           <div class="card sweep mt12">
             <div class="h1 mb8">📍 Manzil va aloqa</div>
             <p class="sub">
-              <span class="strong">Manzil:</span> Andijon shahar, Konchilik ko‘chasi 77-uy<br>
+              <span class="strong">Manzil:</span> Andijon shahar, Konchilik ko‘chasi 77-uy<br />
               <span class="strong">Telefon:</span> 88 988 48 40
             </p>
 
@@ -57,15 +59,20 @@
               <button class="miniBtn primary sweep" id="btn-call">📞 Qo‘ng‘iroq</button>
               <button class="miniBtn sweep" id="btn-maps">🗺️ Xaritada ochish</button>
             </div>
+
+            <!-- MAP (katta bo‘lib ketmasligi uchun class bilan boshqariladi) -->
+            <div class="mapWrap mt12">
+              <iframe
+                class="mapFrame"
+                loading="lazy"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3064.9419630537898!2d72.34691507511367!3d40.78922027939513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb530af8f306fb%3A0xcc8b949ee16f4ab4!2sSoy%20Avtomaktabi!5e0!3m2!1sru!2s!4v1719056702234!5m2!1sru!2s"
+                allowfullscreen
+                referrerpolicy="no-referrer-when-downgrade"
+                title="SOY AVTOMAKTABI xarita"
+              ></iframe>
+            </div>
           </div>
-  <iframe loading="lazy" 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3064.9419630537898!2d72.34691507511367!3d40.78922027939513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb530af8f306fb%3A0xcc8b949ee16f4ab4!2sSoy%20Avtomaktabi!5e0!3m2!1sru!2s!4v1719056702234!5m2!1sru!2s"
-    width="100%" 
-    height="240" 
-    style="border:0; border-radius:18 px;" 
-    allowfullscreen="" 
-    referrerpolicy="no-referrer-when-downgrade">
-  </iframe>
+        </div>
       </section>
 
       <!-- TEST -->
@@ -127,11 +134,13 @@
           </div>
 
           <div class="videoWrap sweep" id="videoWrap">
-            <iframe id="lessonVideo"
+            <iframe
+              id="lessonVideo"
               src=""
               title="SOY AVTOMAKTABI Video dars"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen></iframe>
+              allowfullscreen
+            ></iframe>
           </div>
 
           <div class="card sweep mt12" id="lessonDescCard">
@@ -175,8 +184,3 @@
   <script src="./app.js"></script>
 </body>
 </html>
-
-
-
-
-
