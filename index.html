@@ -4,7 +4,6 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SOY AVTOMAKTABI — Ultra Glass</title>
-
   <link rel="stylesheet" href="./style.css" />
 </head>
 
@@ -24,6 +23,7 @@
     </header>
 
     <main class="pages">
+
       <!-- HOME -->
       <section class="page active" id="page-home">
         <div class="hero sweep">
@@ -56,22 +56,20 @@
             </p>
 
             <div class="miniRow">
-              <button class="miniBtn primary sweep" id="btn-call">📞 Qo‘ng‘iroq</button>
-              <button class="miniBtn sweep" id="btn-maps">🗺️ Xaritada ochish</button>
-            </div>
+              <button 
+                class="miniBtn primary sweep"
+                onclick="window.location.href='tel:+998889884840'">
+                📞 Qo‘ng‘iroq
+              </button>
 
-            <!-- MAP (katta bo‘lib ketmasligi uchun class bilan boshqariladi) -->
-            <div class="mapWrap mt12">
-              <iframe
-                class="mapFrame"
-                loading="lazy"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3064.9419630537898!2d72.34691507511367!3d40.78922027939513!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38bb530af8f306fb%3A0xcc8b949ee16f4ab4!2sSoy%20Avtomaktabi!5e0!3m2!1sru!2s!4v1719056702234!5m2!1sru!2s"
-                allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                title="SOY AVTOMAKTABI xarita"
-              ></iframe>
+              <button 
+                class="miniBtn sweep"
+                onclick="window.open('https://maps.google.com/?q=Andijon Konchilik 77','_blank')">
+                🗺️ Xaritada ochish
+              </button>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -145,7 +143,9 @@
 
           <div class="card sweep mt12" id="lessonDescCard">
             <div class="h1 mb8" id="lessonName">1-dars: Chorraha qoidalari</div>
-            <p class="sub" id="lessonDesc">Chorrahada o‘ng qoida, yo‘l berish, tartib va xavfsizlik.</p>
+            <p class="sub" id="lessonDesc">
+              Chorrahada o‘ng qoida, yo‘l berish, tartib va xavfsizlik.
+            </p>
           </div>
         </div>
       </section>
@@ -161,14 +161,26 @@
             <button class="miniBtn primary sweep" id="btn-send">📨 Yuborish</button>
           </div>
 
-          <div class="toast sweep" id="toast">✅ Xabar qabul qilindi (preview).</div>
+          <div class="toast sweep" id="toast">
+            ✅ Xabar qabul qilindi (preview).
+          </div>
 
           <div class="miniRow">
-            <button class="miniBtn primary sweep" id="btn-call2">📞 Qo‘ng‘iroq</button>
-            <button class="miniBtn sweep" id="btn-telegram">✈️ Telegram</button>
+            <button 
+              class="miniBtn primary sweep"
+              onclick="window.location.href='tel:+998889884840'">
+              📞 Qo‘ng‘iroq
+            </button>
+
+            <button 
+              class="miniBtn sweep"
+              onclick="window.open('https://t.me/uzactive','_blank')">
+              ✈️ Telegram
+            </button>
           </div>
         </div>
       </section>
+
     </main>
 
     <nav class="nav sweep">
