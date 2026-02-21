@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="uz">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SOY AVTOMAKTABI — Ultra Glass</title>
+  <style>
+    :root {
+      --blue: #00B4FF;
+      --black: #05070f;
+      --white: #ffffff;
+      --text: rgba(255, 255, 255, .94);
+      --muted: rgba(255, 255, 255, .70);
+      --glassA: rgba(255, 255, 255, .14);
+      --glassB: rgba(255, 255, 255, .06);
+      --blur: 30px;
+      --radius: 28px;
+      --shadow: 0 30px 120px rgba(0, 0, 0, .75);
+      --shadowSoft: 0 18px 55px rgba(0, 0, 0, .45);
+      --neon: 0 0 26px rgba(0, 180, 255, .28), 0 0 60px rgba(0, 180, 255, .18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    @keyframes auroraMove {
+      0% {
+        background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
+      }
+
+      100% {
+        background-position: 100% 20%, 0% 15%, 55% 80%, 0% 0%;
+      }
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--text);
+      overflow: hidden;
+      background: radial-gradient(950px 720px at 18% 12%, rgba(0, 180, 255, .38), transparent 62%), radial-gradient(820px 650px at 88% 18%, rgba(0, 180, 255, .22), transparent 64%), radial-gradient(680px 520px at 52% 92%, rgba(255, 255, 255, .06), transparent 60%), linear-gradient(180deg, #02030a, var(--black));
+      background-size: 140% 140%, 140% 140%, 140% 140%, 100% 100%;
+      animation: auroraMove 10s ease-in-out infinite alternate;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 22px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      body {
+        animation: none !important;
+      }
+    }
+
+    /* Light Sweep */
+    @keyframes sweepPro {
+      0% {
+        transform: translateX(-190%) rotate(18deg);
+        opacity: 0;
+      }
+
+      14% {
+        opacity: .70;
+      }
+
+      45% {
+        opacity: .28;
+      }
+
+      100% {
+        transform: translateX(210%) rotate(18deg);
+        opacity: 0;
+      }
+    }
+
+    .sweep {
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .sweep::after {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -70%;
+      width: 72%;
+      height: 230%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .55), rgba(0, 180, 255, .42), rgba(255, 255, 255, .18), transparent);
+      filter: blur(2px);
+      transform: translateX(-190%) rotate(18deg);
+      opacity: 0;
+      animation: sweepPro 6s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 6;
+    }
+
+    @media (hover:hover) {
+      .sweep:hover::after {
+        animation-duration: 2.6s;
+      }
+    }
+
+    @keyframes appEnter {
+      0% {
+        transform: translateY(18px) scale(.985);
+        opacity: 0;
+        filter: blur(10px);
+      }
+
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+
+    .shell {
+      width: 432px;
+      max-width: 96vw;
+      border-radius: 36px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(0, 0, 0, .22);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+      animation: appEnter .6s cubic-bezier(.2, .9, .2, 1) both;
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: -2px;
+      background: conic-gradient(from 220deg, rgba(0, 180, 255, .55), rgba(255, 255, 255, .08), rgba(0, 180, 255, .25), rgba(255, 255, 255, .08), rgba(0, 180, 255, .48));
+      filter: blur(18px);
+      opacity: .55;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .shell>* {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Topbar */
+    .topbar {
+      padding: 14px 16px 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .06));
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      letter-spacing: .5px;
+      color: var(--white);
+      background: linear-gradient(135deg, rgba(0, 180, 255, .98), rgba(0, 180, 255, .55));
+      border: 1px solid rgba(255, 255, 255, .18);
+      box-shadow: 0 14px 38px rgba(0, 180, 255, .22);
+    }
+
+    .head {
+      flex: 1;
+      min-width: 0;
+      line-height: 1.15;
+    }
+
+    .head b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .head span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 7px 10px;
+      border: 1px solid rgba(0, 180, 255, .50);
+      background: rgba(0, 180, 255, .12);
+      color: rgba(255, 255, 255, .92);
+      font-weight: 1000;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 22px rgba(0, 180, 255, .14);
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(0, 180, 255, .98);
+      box-shadow: 0 0 16px rgba(0, 180, 255, .8);
+      animation: pulse 1.35s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.35);
+        opacity: .75;
+      }
+    }
+
+    /* Pages */
+    .pages {
+      height: 720px;
+      max-height: 78vh;
+      position: relative;
+      overflow: hidden;
+      background: rgba(0, 0, 0, .12);
+    }
+
+    .page {
+      position: absolute;
+      inset: 0;
+      padding: 16px 16px 88px;
+      overflow: auto;
+      transform: translateX(110%) scale(.985);
+      opacity: 0;
+      filter: blur(8px);
+      transition: transform .38s cubic-bezier(.2, .9, .2, 1), opacity .38s ease, filter .38s ease;
+    }
+
+    .page.active {
+      transform: translateX(0%) scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    .page.back {
+      transform: translateX(-110%) scale(.985);
+      opacity: 0;
+      filter: blur(8px);
+    }
+
+    /* Card */
+    .card {
+      border-radius: var(--radius);
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: linear-gradient(180deg, var(--glassA), var(--glassB));
+      box-shadow: 0 26px 85px rgba(0, 0, 0, .62), inset 0 1px 0 rgba(255, 255, 255, .34), inset 0 -1px 0 rgba(0, 0, 0, .38);
+      backdrop-filter: blur(var(--blur)) saturate(170%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(170%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(520px 170px at 20% 0%, rgba(255, 255, 255, .20), transparent 62%), radial-gradient(540px 190px at 82% 0%, rgba(0, 180, 255, .22), transparent 66%);
+      opacity: .95;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .card>* {
+      position: relative;
+      z-index: 2;
+    }
+
+    .h1 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+      font-weight: 1000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sub {
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .strong {
+      color: var(--white);
+      font-weight: 1000;
+    }
+
+    .mt12 {
+      margin-top: 12px;
+    }
+
+    .mb8 {
+      margin-bottom: 8px;
+    }
+
+    /* Home: compact info blocks (no duplicates) */
+    .hero {
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, .18);
+      background: radial-gradient(520px 220px at 20% 10%, rgba(0, 180, 255, .22), transparent 60%), radial-gradient(520px 220px at 90% 30%, rgba(255, 255, 255, .08), transparent 60%), linear-gradient(180deg, rgba(255, 255, 255, .14), rgba(255, 255, 255, .06));
+      box-shadow: var(--shadowSoft);
+      backdrop-filter: blur(var(--blur)) saturate(170%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(170%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .heroTitle {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 1000;
+      letter-spacing: .2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 180, 255, .18);
+      border: 1px solid rgba(0, 180, 255, .45);
+      box-shadow: 0 0 24px rgba(0, 180, 255, .20);
+    }
+
+    .infoGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .infoCard {
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .06);
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .ic2 {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(0, 180, 255, .14);
+      border: 1px solid rgba(0, 180, 255, .30);
+      flex: 0 0 auto;
+    }
+
+    .infoCard b {
+      display: block;
+      font-size: 14px;
+    }
+
+    .infoCard small {
+      display: block;
+      margin-top: 2px;
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 11px;
+      line-height: 1.35;
+    }
+
+    /* Map */
+    .mapWrap {
+      margin-top: 12px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: rgba(255, 255, 255, .04);
+    }
+
+    iframe {
+      width: 100%;
+      height: 240px;
+      border: 0;
+      display: block;
+      filter: saturate(1.1) contrast(1.05);
+    }
+
+    /* Bottom nav */
+    .nav {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 12px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .11), rgba(255, 255, 255, .06));
+      backdrop-filter: blur(calc(var(--blur) + 6px)) saturate(170%);
+      -webkit-backdrop-filter: blur(calc(var(--blur) + 6px)) saturate(170%);
+      overflow: hidden;
+    }
+
+    .navRow {
+      display: flex;
+      gap: 10px;
+    }
+
+    .nav button {
+      flex: 1;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(0, 0, 0, .16);
+      color: rgba(255, 255, 255, .94);
+      padding: 10px 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      font-weight: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      transition: box-shadow .18s ease, border-color .18s ease, transform .08s ease, background .18s ease;
+    }
+
+    .nav button.active {
+      background: rgba(0, 180, 255, .16);
+      border-color: rgba(0, 180, 255, .66);
+      box-shadow: 0 14px 34px rgba(0, 180, 255, .16), 0 0 24px rgba(0, 180, 255, .20);
+    }
+
+    .nav button:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    /* Buttons */
+    .miniRow {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .miniBtn {
+      border-radius: 18px;
+      padding: 12px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(0, 0, 0, .16);
+      cursor: pointer;
+      font-weight: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--text);
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      transition: box-shadow .18s ease, border-color .18s ease, transform .08s ease, background .18s ease;
+    }
+
+    .miniBtn.primary {
+      background: rgba(0, 180, 255, .14);
+      border-color: rgba(0, 180, 255, .60);
+      box-shadow: 0 12px 28px rgba(0, 180, 255, .12);
+    }
+
+    @media (hover:hover) {
+      .miniBtn:hover {
+        border-color: rgba(0, 180, 255, .78);
+        box-shadow: var(--neon);
+        transform: translateY(-1px);
+      }
+    }
+
+    .miniBtn:active {
+      transform: translateY(1px) scale(.99);
+    }
+
+    /* Quiz */
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 1000;
+    }
+
+    .qTitle {
+      margin: 10px 0 0 0;
+      font-size: 15px;
+      font-weight: 1000;
+    }
+
+    .qImageWrap {
+      margin-top: 12px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .05);
+      box-shadow: var(--shadowSoft);
+    }
+
+    .qImageWrap img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      display: block;
+      filter: saturate(1.05) contrast(1.05);
+    }
+
+    @keyframes imgSwap {
+      0% {
+        opacity: 0;
+        transform: scale(1.03);
+        filter: blur(8px) saturate(1.1) contrast(1.05);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0) saturate(1.05) contrast(1.05);
+      }
+    }
+
+    .imgAnim {
+      animation: imgSwap .38s cubic-bezier(.2, .9, .2, 1) both;
+    }
+
+    .optRow {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .opt {
+      padding: 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .05);
+      cursor: pointer;
+      font-weight: 1000;
+      text-align: left;
+      line-height: 1.35;
+      color: var(--text);
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      transition: box-shadow .18s ease, border-color .18s ease, transform .08s ease;
+    }
+
+    .opt.ok {
+      border-color: rgba(0, 180, 255, .72);
+      background: rgba(0, 180, 255, .14);
+      box-shadow: 0 0 28px rgba(0, 180, 255, .22);
+    }
+
+    .opt.bad {
+      border-color: rgba(255, 255, 255, .26);
+      background: rgba(255, 255, 255, .04);
+      animation: shake .28s ease-in-out;
+    }
+
+    @keyframes shake {
+      0% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-5px);
+      }
+
+      50% {
+        transform: translateX(5px);
+      }
+
+      75% {
+        transform: translateX(-3px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    /* Lessons: video list */
+    .lessonList {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .lessonBtn {
+      padding: 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .06);
+      cursor: pointer;
+      font-weight: 1000;
+      color: var(--text);
+      text-align: left;
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+      transition: box-shadow .18s ease, border-color .18s ease, transform .08s ease;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .lessonBtn span {
+      color: var(--muted);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .lessonBtn.active {
+      border-color: rgba(0, 180, 255, .70);
+      background: rgba(0, 180, 255, .14);
+      box-shadow: 0 0 24px rgba(0, 180, 255, .18);
+    }
+
+    @media (hover:hover) {
+      .lessonBtn:hover {
+        border-color: rgba(0, 180, 255, .66);
+        box-shadow: var(--neon);
+        transform: translateY(-1px);
+      }
+    }
+
+    .videoWrap {
+      margin-top: 12px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .05);
+      box-shadow: var(--shadowSoft);
+    }
+
+    .videoWrap iframe {
+      width: 100%;
+      height: 220px;
+      border: 0;
+      display: block;
+    }
+
+    /* Chat */
+    .chatBox {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .chatBox input {
+      flex: 1;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .05);
+      color: rgba(255, 255, 255, .94);
+      padding: 12px 12px;
+      outline: none;
+      font-weight: 900;
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+    }
+
+    .toast {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: rgba(255, 255, 255, .05);
+      color: var(--muted);
+      font-size: 12px;
+      display: none;
+      backdrop-filter: blur(var(--blur)) saturate(160%);
+      -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+    }
+
+    .toast.show {
+      display: block;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <header class="topbar sweep">
+      <div class="logo">SOY</div>
+      <div class="head"> <b>SOY AVTOMAKTABI</b> <span>Asosiy ma’lumot • Test • Video dars • Chat</span> </div>
+      <div class="pill"><span class="dot"></span> LIVE</div>
+    </header>
+    <main class="pages"> <!-- HOME (NO DUPLICATES) -->
+      <section class="page active" id="page-home">
+        <div class="hero sweep">
+          <h1 class="heroTitle"><span class="mark">🚗</span> SOY AVTOMAKTABI</h1>
+          <!-- ONLY ONE PLACE for all key info -->
+          <div class="infoGrid">
+            <div class="infoCard sweep">
+              <div class="ic2">🏆</div>
+              <div><b>68 yillik tajriba</b><small>ishonchli ta’lim</small></div>
+            </div>
+            <div class="infoCard sweep">
+              <div class="ic2">🪪</div>
+              <div><b>A, B, BC, C, E</b><small>toifalarda o‘qish</small></div>
+            </div>
+            <div class="infoCard sweep">
+              <div class="ic2">⚡</div>
+              <div><b>Ekspress kurslar</b><small>tezroq tayyorlanish</small></div>
+            </div>
+            <div class="infoCard sweep">
+              <div class="ic2">🏁</div>
+              <div><b>Avtodrom</b><small>imtihon avtodromi bilan bir xil</small></div>
+            </div>
+          </div>
+          <div class="card sweep mt12">
+            <div class="h1 mb8">📍 Manzil va aloqa</div>
+            <p class="sub"> <span class="strong">Manzil:</span> Andijon shahar, Konchilik ko‘chasi 77-uy<br> <span
+                class="strong">Telefon:</span> 88 988 48 40 </p>
+            <div class="miniRow"> <button class="miniBtn primary sweep" id="btn-call">📞 Qo‘ng‘iroq</button> <button
+                class="miniBtn sweep" id="btn-maps">🗺️ Xaritada ochish</button> </div>
+          </div>
+          <div class="mapWrap sweep"> <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Andijon%20Konchilik%20ko%27chasi%2077&output=embed"></iframe> </div>
+        </div>
+      </section> <!-- TEST -->
+      <section class="page" id="page-test">
+        <div class="card sweep">
+          <h2 class="h1">📝 Test (rasmli)</h2>
+          <p class="sub">Savol rasmi bor. Variant tanlang.</p>
+          <div class="card sweep mt12">
+            <div class="row">
+              <div id="qpos">Savol 1/6</div>
+              <div id="score">Ball: 0</div>
+            </div>
+            <div class="qImageWrap sweep"> <img id="qimg" alt="Savol rasmi" /> </div>
+            <p class="qTitle" id="qtext">...</p>
+            <div class="optRow"> <button class="opt sweep" id="a0"></button> <button class="opt sweep" id="a1"></button>
+              <button class="opt sweep" id="a2"></button>
+            </div>
+            <div class="row">
+              <div>Tanlang</div>
+              <div id="feedback"></div>
+            </div>
+          </div>
+          <div class="miniRow"> <button class="miniBtn primary sweep" id="btn-reset">🔁 Qayta</button> <button
+              class="miniBtn sweep" id="btn-home">🏠 Home</button> </div>
+        </div>
+      </section> <!-- LESSONS (VIDEO LESSONS) -->
+      <section class="page" id="page-lessons">
+        <div class="card sweep">
+          <h2 class="h1">📚 Video darslar</h2>
+          <p class="sub">Darsni tanlang: “1-dars, 2-dars…”</p>
+          <div class="lessonList"> <button class="lessonBtn sweep active" data-video="0"> 1-dars: Chorraha qoidalari
+              <span>▶️ video</span> </button> <button class="lessonBtn sweep" data-video="1"> 2-dars: Masofa saqlash (3
+              soniya) <span>▶️ video</span> </button> <button class="lessonBtn sweep" data-video="2"> 3-dars: Yo‘l
+              belgilari asoslari <span>▶️ video</span> </button> <button class="lessonBtn sweep" data-video="3"> 4-dars:
+              Yuk gabaritlari (misol bilan) <span>▶️ video</span> </button> </div>
+          <div class="videoWrap sweep" id="videoWrap"> <iframe id="lessonVideo" src=""
+              title="SOY AVTOMAKTABI Video dars"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe> </div>
+          <div class="card sweep mt12" id="lessonDescCard">
+            <div class="h1 mb8" id="lessonName">1-dars: Chorraha qoidalari</div>
+            <p class="sub" id="lessonDesc">Chorrahada o‘ng qoida, yo‘l berish, tartib va xavfsizlik.</p>
+          </div>
+        </div>
+      </section> <!-- CHAT -->
+      <section class="page" id="page-chat">
+        <div class="card sweep">
+          <h2 class="h1">💬 Chat</h2>
+          <p class="sub">Preview: real admin’ga ketmaydi (dizayn uchun).</p>
+          <div class="chatBox"> <input id="chatMsg" placeholder="Savol yozing..." /> <button
+              class="miniBtn primary sweep" id="btn-send">📨 Yuborish</button> </div>
+          <div class="toast sweep" id="toast">✅ Xabar qabul qilindi (preview).</div>
+          <div class="miniRow"> <button class="miniBtn primary sweep" id="btn-call2">📞 Qo‘ng‘iroq</button> <button
+              class="miniBtn sweep" id="btn-telegram">✈️ Telegram</button> </div>
+        </div>
+      </section>
+    </main>
+    <nav class="nav sweep">
+      <div class="navRow"> <button id="nav-home" class="active sweep">🏠 Home</button> <button id="nav-test"
+          class="sweep">📝 Test</button> <button id="nav-lessons" class="sweep">📚 Dars</button> <button id="nav-chat"
+          class="sweep">💬 Chat</button> </div>
+    </nav>
+  </div>
+  <script> const $ = (id) => document.getElementById(id); // ===== Router ===== const pages = { home:$("page-home"), test:$("page-test"), lessons:$("page-lessons"), chat:$("page-chat") }; const navBtns = { home:$("nav-home"), test:$("nav-test"), lessons:$("nav-lessons"), chat:$("nav-chat") }; let current = "home"; function go(name){ if(!pages[name]) return; pages[current].classList.remove("active"); pages[current].classList.add("back"); pages[name].classList.remove("back"); pages[name].classList.add("active"); Object.keys(navBtns).forEach(k => navBtns[k].classList.toggle("active", k === name)); current = name; if(name === "test") renderQuestion(); setTimeout(() => { Object.values(pages).forEach(p => { if(!p.classList.contains("active")) p.classList.remove("back"); }); }, 380); } navBtns.home.onclick = ()=>go("home"); navBtns.test.onclick = ()=>go("test"); navBtns.lessons.onclick = ()=>go("lessons"); navBtns.chat.onclick = ()=>go("chat"); // ===== Home actions ===== $("btn-call").onclick = ()=>{ window.location.href = "tel:+998889884840"; }; $("btn-maps").onclick = ()=>{ window.open("https://www.google.com/maps?q=Andijon%20Konchilik%20ko%27chasi%2077", "_blank"); }; // ===== Chat preview ===== const toast = $("toast"); $("btn-send").onclick = ()=>{ const v = ($("chatMsg").value || "").trim(); if(!v) return; $("chatMsg").value = ""; toast.classList.add("show"); setTimeout(()=>toast.classList.remove("show"), 1600); }; $("btn-call2").onclick = ()=>{ window.location.href = "tel:+998889884840"; }; $("btn-telegram").onclick = ()=>{ window.open("https://t.me/uzactive", "_blank"); }; // ===== Quiz: offline images via SVG (simple) ===== function svgData(svg){ return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg.trim()); } const IMG = { chorraha: svgData(<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500"> <rect width="900" height="500" fill="#06101b"/> <rect x="360" y="0" width="180" height="500" fill="#0b1118"/> <rect x="0" y="180" width="900" height="140" fill="#0b1118"/> <rect x="420" y="340" width="60" height="90" rx="12" fill="#00B4FF"/> <rect x="560" y="210" width="90" height="55" rx="12" fill="#00B4FF"/> <rect x="350" y="115" width="60" height="90" rx="12" fill="#00B4FF" opacity=".9"/> <rect x="200" y="235" width="90" height="55" rx="12" fill="#00B4FF" opacity=".9"/> </svg>), masofa: svgData(<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500"> <rect width="900" height="500" fill="#06101b"/> <rect x="0" y="260" width="900" height="240" fill="#0b1118"/> <rect x="180" y="320" width="220" height="80" rx="18" fill="#00B4FF"/> <rect x="520" y="320" width="220" height="80" rx="18" fill="#00B4FF" opacity=".85"/> <line x1="400" y1="360" x2="520" y2="360" stroke="rgba(255,255,255,.7)" stroke-width="6" stroke-dasharray="12 10"/> </svg>), belgi: svgData(<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500"> <rect width="900" height="500" fill="#06101b"/> <rect x="0" y="300" width="900" height="200" fill="#0b1118"/> <rect x="140" y="120" width="160" height="160" rx="28" fill="#00B4FF"/> <rect x="210" y="280" width="20" height="150" rx="10" fill="rgba(255,255,255,.5)"/> </svg>), signal: svgData(<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500"> <rect width="900" height="500" fill="#071321"/> <rect x="0" y="290" width="900" height="210" fill="#0b1118"/> <rect x="180" y="260" width="320" height="90" rx="18" fill="#00B4FF"/> <polygon points="520,285 610,310 520,335" fill="rgba(255,255,255,.25)"/> <polygon points="610,275 710,310 610,345" fill="rgba(255,255,255,.18)"/> </svg>), svetofor: svgData(<svg xmlns="http://www.w3.org/2000/svg" width="900" height="500" viewBox="0 0 900 500"> <rect width="900" height="500" fill="#06101b"/> <rect x="0" y="280" width="900" height="220" fill="#0b1118"/> <rect x="120" y="110" width="120" height="260" rx="28" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width="4"/> <circle cx="180" cy="240" r="34" fill="rgba(0,180,255,.55)"/> </svg>) }; const quiz = [ { img: IMG.chorraha, q:"Teng huquqli chorrahada odatda kimga yo‘l beriladi?", o:["A) Chap tomondagiga","B) O‘ng tomondagiga","C) Tezroq kelayotganiga"], c:1 }, { img: IMG.signal, q:"Burilishdan oldin nima qilinadi?", o:["A) Signal beriladi","B) Signal shart emas","C) Faqat tunda signal"], c:0 }, { img: IMG.masofa, q:"Tezlik oshganda xavfsiz masofa qanday bo‘ladi?", o:["A) Kamayadi","B) O‘zgarmaydi","C) Oshadi"], c:2 }, { img: IMG.belgi, q:"Yo‘l belgisi nimaga xizmat qiladi?", o:["A) Ogohlantirish va xavfsizlik","B) Bezak","C) Faqat imtihon uchun"], c:0 }, { img: IMG.svetofor, q:"Svetoforning sariq chirog‘i nimani anglatadi?", o:["A) Tez yurish","B) Ogohlantirish / ehtiyot bo‘lish","C) Park qilish"], c:1 }, ]; let qpos = 0, score = 0, locked = false; const qposEl = $("qpos"); const scoreEl = $("score"); const qtextEl = $("qtext"); const fbEl = $("feedback"); const qimgEl = $("qimg"); const optEls = [$("a0"), $("a1"), $("a2")]; function animSwapImg(){ qimgEl.classList.remove("imgAnim"); void qimgEl.offsetWidth; qimgEl.classList.add("imgAnim"); } function renderQuestion(){ const item = quiz[qpos]; optEls.forEach(b=>{ b.classList.remove("ok","bad"); b.style.display = "block"; }); if(!item){ qtextEl.textContent = "✅ Test tugadi!"; qposEl.textContent = "Yakun"; fbEl.textContent = Natija: ${score}/${quiz.length}; qimgEl.src = IMG.masofa; animSwapImg(); optEls[0].textContent = "🔁 Qayta"; optEls[1].textContent = "🏠 Home"; optEls[2].style.display = "none"; optEls[0].onclick = () => resetQuiz(); optEls[1].onclick = () => go("home"); return; } locked = false; fbEl.textContent = ""; qposEl.textContent = Savol ${qpos+1}/${quiz.length}; scoreEl.textContent = Ball: ${score}; qtextEl.textContent = item.q; qimgEl.src = item.img; animSwapImg(); optEls.forEach((b,i)=>{ b.textContent = item.o[i]; b.onclick = () => answer(i); }); } function answer(i){ if(locked) return; locked = true; const item = quiz[qpos]; const correct = item.c; if(i === correct){ score++; optEls[i].classList.add("ok"); fbEl.textContent = "To‘g‘ri ✅"; } else { optEls[i].classList.add("bad"); optEls[correct].classList.add("ok"); fbEl.textContent = "Noto‘g‘ri ❌"; } scoreEl.textContent = Ball: ${score}; setTimeout(()=>{ qpos++; renderQuestion(); }, 700); } function resetQuiz(){ qpos = 0; score = 0; locked = false; optEls[2].style.display = "block"; renderQuestion(); } $("btn-reset").onclick = resetQuiz; $("btn-home").onclick = ()=>go("home"); renderQuestion(); // ===== Video lessons ===== // Eslatma: shu yerga o'zingizning YouTube video ID'larini qo'yasiz. // Masalan: https://www.youtube.com/watch?v=dQw4w9WgXcQ -> ID = dQw4w9WgXcQ const lessons = [ { name: "1-dars: Chorraha qoidalari", desc: "Chorrahada o‘ng qoida, yo‘l berish, tartib va xavfsizlik.", yt: "dQw4w9WgXcQ" }, { name: "2-dars: Masofa saqlash (3 soniya)", desc: "Oldingi mashinaga xavfsiz masofani saqlash bo‘yicha amaliy tushuntirish.", yt: "kJQP7kiw5Fk" }, { name: "3-dars: Yo‘l belgilari asoslari", desc: "Eng ko‘p uchraydigan belgilar va ularning ma’nosi.", yt: "3JZ_D3ELwOQ" }, { name: "4-dars: Yuk gabaritlari (misol bilan)", desc: "Yuk chiqib turishi va xavfsizlik belgilarini amaliy misolda ko‘rsatish.", yt: "9bZkp7q19f0" } ]; const lessonVideo = $("lessonVideo"); const lessonName = $("lessonName"); const lessonDesc = $("lessonDesc"); const lessonButtons = document.querySelectorAll(".lessonBtn"); function setLesson(i){ const L = lessons[i]; if(!L) return; lessonButtons.forEach(b => b.classList.remove("active")); document.querySelector(.lessonBtn[data-video="${i}"])?.classList.add("active"); lessonName.textContent = L.name; lessonDesc.textContent = L.desc; // YouTube embed const src = https://www.youtube.com/embed/${L.yt}?rel=0&modestbranding=1; lessonVideo.src = src; } lessonButtons.forEach(btn=>{ btn.onclick = ()=>{ const i = Number(btn.getAttribute("data-video")); setLesson(i); }; }); // default first lesson setLesson(0); </script>
+</body>
+
+</html>
